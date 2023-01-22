@@ -1,0 +1,31 @@
+<h1>Title: <%= book.title %></h1>
+<p><b>Author: </b><a href="<%= book.author.url %>"><%= book.author.full_name %></a></p>
+<p><b>Summary: </b><%= book.summary %></p>
+<p><b>ISBN: </b><%= book.isbn %></p>
+<p><b>Genres: </b></p>
+<ul>
+  <% book.genre.forEach( genre => { %>
+    <li><a href="<%= genre.url %>"><%= genre.name %></a></li>
+  <% }) %>
+</ul>
+<% if (locals.copies?.length > 0) { %>
+  <p><b>Delete the following copies before attempting to delete this book: </b></p>
+  <div style='margin-left:20px;margin-top:20px'>
+    <h4>Copies</h4>
+    <ul>
+      <% copies.forEach( copy => { %>
+        <li>
+          <a href="<%= copy.url %>"><%= copy._id %></a>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+<% } else { %>
+  <p><b>Do you really want to delete this book?</b></p>
+  <form action="" method="POST">
+    <input id="bookid" class="form-control mb-2" type="hidden", name="bookid"
+        value="<%= locals.book?._id %>"
+      >
+    <button class="btn btn-primary" type="submit">Delete</button>
+  </form>
+<% } %>

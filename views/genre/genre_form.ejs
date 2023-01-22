@@ -1,0 +1,17 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label class="mb-2" for="name"><b>Genre:</b></label>
+    <input id="name" class="form-control mb-2" type="text", placeholder="Fantasy, Poetry etc." name="name" value="<%= locals.genre?.name ?? "" %>" required="true">
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if( locals.errors ) { %> 
+  <ul>
+    <% errors.forEach(error => { %> 
+      <li><%= error.msg %></li>
+    <% }) %> 
+  </ul>
+<% } %> 

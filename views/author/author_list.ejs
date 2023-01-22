@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+
+<ul>
+  <% authorList.forEach( author => { %>
+    <li>
+      <a href="<%= author.url %>"><%= author.full_name %></a> (<%= author.dob_formatted %> - <%= author.dod_formatted %>)
+    </li>
+  <% }) %>
+</ul>

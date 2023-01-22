@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+
+<ul>
+  <% genreList.forEach( genre => { %>
+    <li>
+      <a href="<%= genre.url %>"><%= genre.name %></a>
+    </li>
+  <% }) %>
+</ul>

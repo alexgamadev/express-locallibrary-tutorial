@@ -1,0 +1,18 @@
+<h1>ID: <%= copy.id %></h1>
+<p><b>Title: </b><a href="<%= copy.book.url %>"><%= copy.book.title %></a></p>
+<p><b>Imprint: </b><%= copy.imprint %></p>
+<p><b>Status: </b><% if(copy.status =='Available'){ %>
+  <span class="text-success"><%= copy.status %></span>
+<% } else if(copy.status =='Maintenance'){ %>
+  <span class="text-danger"><%= copy.status %></span>
+<% } else { %>
+  <span class="text-warning"><%= copy.status %></span>
+<% } %></p>
+<p><b>Due back: </b><%= copy.due_date_formatted %></p>
+<p><b>Do you really want to delete this copy?</b></p>
+<form action="" method="POST">
+  <input id="copyid" class="form-control mb-2" type="hidden", name="copyid"
+      value="<%= locals.copy?._id %>"
+    >
+  <button class="btn btn-primary" type="submit">Delete</button>
+</form>

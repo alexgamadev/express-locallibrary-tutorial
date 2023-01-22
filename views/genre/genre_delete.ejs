@@ -1,0 +1,8 @@
+<h1>Name: <%= genre.name %></h1>
+<p><b>Do you really want to delete this book?</b></p>
+<form action="" method="POST">
+  <input id="genreid" class="form-control mb-2" type="hidden", name="genreid"
+      value="<%= locals.genre?._id %>"
+    >
+  <button class="btn btn-primary" type="submit">Delete</button>
+</form>

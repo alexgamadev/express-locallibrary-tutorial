@@ -1,0 +1,48 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label class="mb-2" for="book"><b>Book:</b></label>
+    <select id="book" class="form-control mb-2", placeholder="Title of book" 
+      name="book" value="<%= locals.book?.title ?? "" %>" required="true"
+    >
+      <% books.forEach( book => { %>
+        <% if (locals.selected_copy) { %>
+          <option value="<%= book._id%>" selected="<%= selected_copy === book._id.toString() %>">
+            <%= book.title %>
+          </option>
+        <% } else { %>
+          <option value="<%= book._id %>">
+            <%= book.title %>
+          </option>
+        <% } %>
+      <% }) %>
+    </select>
+    <label class="mb-2" for="imprint"><b>Imprint:</b></label>
+    <input id="imprint" class="form-control mb-2" placeholder="Imprint" type="text"
+      name="imprint" value="<%= locals.copy?.imprint ?? "" %>"
+    >
+    <label class="mb-2" for="due_back"><b>Date when book available:</b></label>
+    <input id="due_back" class="form-control mb-2" type="date", name="due_back" required="true"
+       value="<%= locals.copy?.due_back ?? "" %>"
+    >
+    <label class="mb-2" for="status"><b>Status:</b></label>
+    <select id="status" class="form-control mb-2", placeholder="Select status" 
+      name="status" required="true"
+    >
+      <option value="Maintenance">Maintenance</option>
+      <option value="Available">Available</option>
+      <option value="Loaned">Loaned</option>
+      <option value="Reserved">Reserved</option>
+    </select>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if( locals.errors ) { %> 
+  <ul>
+    <% errors.forEach(error => { %> 
+      <li><%= error.msg %></li>
+    <% }) %> 
+  </ul>
+<% } %> 

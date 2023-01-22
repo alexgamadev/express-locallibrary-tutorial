@@ -1,0 +1,35 @@
+<h1>Title: <%= book.title %></h1>
+
+<p><b>Author: </b><a href="<%= book.author.url %>"><%= book.author.full_name %></a></p>
+<p><b>Summary: </b><%= book.summary %></p>
+<p><b>ISBN: </b><%= book.isbn %></p>
+<p><b>Genres: </b></p>
+<ul>
+  <% book.genre.forEach( genre => { %>
+    <li><a href="<%= genre.url %>"><%= genre.name %></a></li>
+  <% }) %>
+</ul>
+<div style='margin-left:20px;margin-top:20px'>
+  <h4>Copies</h4>
+  <% if(!copies || copies.length == 0){ %>
+    <p><b>No copies available</b></p>
+    <% } %>
+  <% copies.forEach( copy => { %>
+    <hr></hr>
+    <% if(copy.status =='Available'){ %>
+      <p class="text-success"><%= copy.status %></p>
+    <% } else if(copy.status =='Maintenance'){ %>
+      <p class="text-danger"><%= copy.status %></p>
+    <% } else { %>
+      <p class="text-warning"><%= copy.status %></p>
+    <% } %>
+    <p><b>Imprint: </b><%= copy.imprint %></p>
+    <% if(copy.status !='Available'){ %>
+      <p><b>Due back: </b><%= copy.due_date_formatted %></p>
+    <% } %>
+    <p><b>Id: </b><a href="<%= copy.url %>"><%= copy._id %></a></p>
+  <% }) %>
+</div>
+<hr>
+<p><a href="<%= book.url+'/delete' %>">Delete book</a></p>
+<p><a href="<%= book.url+'/update' %>">Update book</a></p>

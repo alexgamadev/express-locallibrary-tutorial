@@ -1,0 +1,31 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label class="mb-2" for="first_name"><b>First Name:</b></label>
+    <input id="first_name" class="form-control mb-2" type="text", placeholder="First name" 
+      name="first_name" value="<%= locals.author?.first_name ?? "" %>" required="true"
+    >
+    <label class="mb-2" for="family_name"><b>Family Name:</b></label>
+    <input id="family_name" class="form-control mb-2" type="text", placeholder="Family name"
+      name="family_name" value="<%= locals.author?.family_name ?? "" %>" required="true"
+    >
+    <label class="mb-2" for="date_of_birth"><b>Date of birth:</b></label>
+    <input id="date_of_birth" class="form-control mb-2" type="date", name="date_of_birth"
+       value="<%= locals.author?.date_of_birth ?? "" %>"
+    >
+    <label class="mb-2" for="date_of_death"><b>Date of death:</b></label>
+    <input id="date_of_death" class="form-control mb-2" type="date", name="date_of_death"
+       value="<%= locals.author?.date_of_death ?? "" %>"
+    >
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if( locals.errors ) { %> 
+  <ul>
+    <% errors.forEach(error => { %> 
+      <li><%= error.msg %></li>
+    <% }) %> 
+  </ul>
+<% } %> 

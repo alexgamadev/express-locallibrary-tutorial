@@ -1,0 +1,51 @@
+<h1><%= title %></h1>
+
+<form action="" method="POST">
+  <div class="form-group">
+    <label class="mb-2" for="title"><b>Title:</b></label>
+    <input id="title" class="form-control mb-2" type="text", placeholder="Title of book" 
+      name="title" value="<%= locals.book?.title ?? "" %>" required="true"
+    >
+    <label class="mb-2" for="author"><b>Author:</b></label>
+    <select id="author" class="form-control mb-2" placeholder="Select author"
+      name="author" value="<%= locals.author?.family_name ?? "" %>" required="true"
+    >
+      <% authors.forEach( author => { %>
+        <% if (locals.book) { %>
+          <option value="<%= author._id%>" selected="<%= author._id.toString()==book.author._id.toString() || author._id.toString()==book.author %>">
+            <%= author.full_name %>
+          </option>
+        <% } else { %>
+          <option value="<%= author._id %>">
+            <%= author.full_name %>
+          </option>
+        <% } %>
+      <% }) %>
+    </select>
+    <label class="mb-2" for="summary"><b>Summary:</b></label>
+    <textarea id="summary" class="form-control mb-2", name="summary"
+    ><%= locals.book?.summary ?? "" %></textarea>
+    <label class="mb-2" for="isbn"><b>ISBN:</b></label>
+    <input id="isbn" class="form-control mb-2" type="text", name="isbn"
+       value="<%= locals.book?.isbn ?? "" %>"
+    >
+    <label class="mb-2"><b>Genre:</b></label>
+    <div>
+      <% genres.forEach( genre => { %>
+        <input type="checkbox" name="genre" id="<%= genre._id %>"
+         value="<%= genre._id %>" <%= genre.checked ? "checked": "" %>>
+        <label class="mb-2" for="<%= genre._id %>"><%= genre.name %>:</label>
+      <% }) %>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </div>
+</form>
+
+<% if( locals.errors ) { %> 
+  <ul>
+    <% errors.forEach(error => { %> 
+      <li><%= error.msg %></li>
+    <% }) %> 
+  </ul>
+<% } %> 

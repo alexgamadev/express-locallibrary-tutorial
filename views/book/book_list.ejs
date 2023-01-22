@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+
+<ul>
+  <% booksList.forEach( book => { %>
+    <li>
+      <a href="<%= book.url %>"><%= book.title %></a> (<%= book.author.full_name %>)
+    </li>
+  <% }) %>
+</ul>

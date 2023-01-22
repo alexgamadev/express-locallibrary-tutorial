@@ -1,0 +1,19 @@
+<h1><%= title %></h1>
+
+<ul>
+  <% bookCopyList.forEach( copy => { %>
+    <li>
+      <a href="<%= copy.url %>"><%= copy.book.title %></a> (<%= copy.imprint %>) - 
+      <% if(copy.status =='Available'){ %>
+        <span class="text-success"><%= copy.status %></span>
+      <% } else if(copy.status =='Maintenance'){ %>
+        <span class="text-danger"><%= copy.status %></span>
+      <% } else { %>
+        <span class="text-warning"><%= copy.status %></span>
+      <% } %>
+      <% if(copy.status !='Available'){ %>
+        <span> (Due: <%= copy.due_date_formatted %>)</span>
+      <% } %>
+    </li>
+  <% }) %>
+</ul>
